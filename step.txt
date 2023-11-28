@@ -1,0 +1,22 @@
+该文件是我自己创建的，用于记录一些关键步骤，项目参考《Operator开发进阶》第7章
+
+1. 项目初始化：
+    kubebuilder init --domain=xinyang.cn --repo=github.com/yancey92/application-operator --owner XinYang
+
+2. 添加新的 API
+    创建 Application 类型和对应的控制器：
+    kubebuilder create api --group apps --version v1 --kind Application 
+        INFO Create Resource [y/n]                        
+        y
+        INFO Create Controller [y/n]                      
+        y
+        ...... 略
+        Next: implement your new API and generate the manifests (e.g. CRDs,CRs) with: $ make manifests
+
+
+3. 完善这个 API
+    ./api/v1/application_types.go 中完善你的资源结构体，通常是资源的 Spec、Status 的定义
+
+
+
+
