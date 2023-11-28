@@ -14,9 +14,25 @@
         Next: implement your new API and generate the manifests (e.g. CRDs,CRs) with: $ make manifests
 
 
-3. 完善这个 API
+3. 完善这个 API, 即完善 CRD
     ./api/v1/application_types.go 中完善你的资源结构体，通常是资源的 Spec、Status 的定义
+    然后执行  make manifests 命令自动完善CRD的yaml，以及自动完善 zz_generated.deepcopy.go 代码，以及其他的一些资源yaml文件
 
 
+4. 实现自定义资源的controller，即自定义资源的 Spec 字段的调谐 (reconcile) 流程
+    internal/controller 下面
+    
 
+5. 设置Operator的 RBAC 权限
+
+6. 过滤调谐事件
+
+7. 给自定义资源起个别名
+
+8. 使用 webhook，实现资源的访问控制
+
+
+9. API 多版本的支持
+
+10. API 分组的支持
 
