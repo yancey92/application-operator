@@ -1,0 +1,11 @@
+# One control plane node and three "workers".
+# Use command:  kind create cluster --image kindest/node:v1.28.0 --config=./kind-multinode-config.yaml
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: dev
+networking:
+ apiServerAddress: 192.168.0.103
+nodes:
+  - role: control-plane
+  - role: worker

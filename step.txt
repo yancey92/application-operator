@@ -1,7 +1,7 @@
 该文件是我自己创建的，用于记录一些关键步骤，项目参考《Operator开发进阶》第7章
 作者代码：https://github.com/daniel-hutao/Advanced-Kubernetes-Operator
-不过，我在开发时候，按照作者的代码，遇到创建 CRD 时 kubectl 版本和 k8s 版本兼容问题，导致在创建CR时失败。
-实际情况，请按照本人项目来测试。
+我在开发时候，按照作者的代码，遇到创建 CRD 时 kubectl 版本和 k8s 版本兼容问题，导致在创建CR时失败。
+不过，小小的做一些修改就可以了，请按照本人项目代码来测试。
 
 1. 项目初始化：
     kubebuilder init --domain=xinyang.cn --repo=github.com/yancey92/application-operator --owner XinYang
@@ -38,14 +38,27 @@
     +kubebuilder:resource:path=applications,singular=application,scope=Namespaced,shortName=app
 
 8. 使用 webhook，实现资源的访问控制
-
+    kubebuilder create webhook --group apps --version v1 --kind Application --defaulting --programmatic-validation 
+    webhook 代码编写
+    webhook 运行需要证书，所以运行前，先部署 cert-manager。我本地用的 helm 安装 cert-manager:v1.13.2
 
 9. API 多版本的支持
 
 10. API 分组的支持
 
 11. make run 本地启动 controller 调试
+
 12. make docker-build IMG=application-operator:v0.0.1
+
 13. 如果是Kind环境，将镜像load 进Kind 环境：
     kind load docker-image application-operator:v0.0.1 --name {cluster_name}
-14. 部署 operator 控制器：make deploy IMG=application-operator:v0.0.1
+
+14. 部署 operator 控制器：
+    make deploy IMG=application-operator:v0.0.1
+    在部署的过程中由于crd注解限制大小有可能导致错误，这时可以修改makefile，将kubectl apply 改为 kubectl create
+
+
+
+
+
+

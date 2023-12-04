@@ -14,11 +14,11 @@ spec:
     replicas: 1
     selector:
       matchLabels:
-        app: nginx1
+        app: nginx
     template:
       metadata:
         labels:
-          app: nginx1
+          app: nginx
       spec:
         containers:
           - name: nginx
