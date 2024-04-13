@@ -21,4 +21,12 @@ resources:
     defaulting: true
     validation: true
     webhookVersion: v1
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: xinyang.cn
+  group: apps
+  kind: Application
+  path: github.com/yancey92/application-operator/api/v2
+  version: v2
 version: "3"

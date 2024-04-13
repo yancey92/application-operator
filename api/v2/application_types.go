@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1
+package v2
 
 import (
 	appsv1 "k8s.io/api/apps/v1"
@@ -33,8 +33,8 @@ type ApplicationSpec struct {
 	// Foo is an example field of Application. Edit application_types.go to remove/update
 	// Foo string `json:"foo,omitempty"`
 
-	Deployment DeploymentTemplate `json:"deployment,omitempty"`
-	Service    ServiceTemplate    `json:"service,omitempty"`
+	Workflow DeploymentTemplate `json:"workflow,omitempty"`
+	Service  ServiceTemplate    `json:"service,omitempty"`
 }
 
 type DeploymentTemplate struct {
@@ -54,10 +54,9 @@ type ApplicationStatus struct {
 	Network  corev1.ServiceStatus    `json:"network"`
 }
 
-// +kubebuilder:object:root=true
-// +kubebuilder:subresource:status
-// +kubebuilder:resource:path=applications,singular=application,scope=Namespaced,shortName=app
-// +kubebuilder:storageversion
+//+kubebuilder:object:root=true
+//+kubebuilder:subresource:status
+
 // Application is the Schema for the applications API
 type Application struct {
 	metav1.TypeMeta   `json:",inline"`

@@ -33,6 +33,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
 	appsv1 "github.com/yancey92/application-operator/api/v1"
+	appsv2 "github.com/yancey92/application-operator/api/v2"
 	"github.com/yancey92/application-operator/internal/controller"
 	//+kubebuilder:scaffold:imports
 )
@@ -46,6 +47,7 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(appsv1.AddToScheme(scheme))
+	utilruntime.Must(appsv2.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 
